@@ -34,7 +34,6 @@ public class GamePlay {
 
         //Calls the method to generate a random number
         randomNum.generateNumber();
-        System.out.println(randomNum.getRandomNum());
 
         //loop that continues repeating until a number between 1-100 is entered
         for(int i = 0; i<=10; i++) {
