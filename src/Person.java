@@ -14,23 +14,33 @@ public class Person {
         lastName = lName;
     }
 
-    //public getter for the first name
+    //public getters and setters for a person's name
     public String getFirstName(){
         return firstName;
     }
 
-    //public getter for the last name
     public String getLastName(){
         return lastName;
     }
 
-    //public setter for the first name
     public void setFirstName(String fName){
         firstName = fName;
     }
 
-    //public setter for the last name
     public void setLastName(String lName){
         lastName = lName;
     }
+
+    public String getFullName(){//returns a persons full name
+        if(lastName.isBlank()){
+            return firstName;
+        }
+        return firstName + " " + lastName;
+    }
+
+    public String toString(){//
+        return firstName + " " + lastName;
+    }
 }
+
+

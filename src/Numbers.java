@@ -1,6 +1,6 @@
 import java.util.Random;
 public class Numbers {
-    private int randomNum;
+    private static int randomNum;
 
 //Generates a random number between 0-100
     public int generateNumber(){
@@ -22,13 +22,8 @@ public class Numbers {
 //compares the user's guess to the random number generated
     public boolean compareNumber(int guess){
         if(guess == randomNum){
-            System.out.println("Congratulations, you guessed the number!");
             return true;
-        }else if(guess > randomNum){
-            System.out.println("I'm sorry. That guess was too high.");
-            return false;
         }else{
-            System.out.println("I'm sorry, that guess was too low.");
             return false;
         }
     }
