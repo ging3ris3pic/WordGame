@@ -1,4 +1,6 @@
+import java.lang.reflect.Array;
 import java.util.Scanner;
+import java.util.ArrayList;
 public class GamePlay {
 
     //Main method
@@ -11,27 +13,36 @@ public class GamePlay {
         turn.setWinAmount(400);
         turn.setLoseAmount(300);
         int userIn = 1;
+        int i;
 
-        System.out.print("Enter first name: ");
-        String fName = scnr.nextLine();
+       Player[] currentPlayers = new Player[3];
+        for(i = 0; i < currentPlayers.length; i++) {
+            System.out.print("Enter first name: ");
+            String fName = scnr.nextLine();
 
-        //Reads last name if entered
-        System.out.print("Enter last name (Optional):");
-        String lName = scnr.nextLine();
+            //Reads last name if entered
+            System.out.print("Enter last name (Optional):");
+            String lName = scnr.nextLine();
 
-        //Creates an object depending on if the user enters a last name
-        if (!lName.isBlank()) {
-            player = new Player(fName, lName);
-        } else {
-            player = new Player(fName);
+            //Creates an object depending on if the user enters a last name
+            if (!lName.isBlank()) {
+                currentPlayers[i] = new Player(fName, lName);
+            } else {
+                currentPlayers[i] = new Player(fName);
+            }
         }
+
+        //System.out.println(currentPlayers[0]);
+        //System.out.println(currentPlayers[1]);
+        //System.out.println(currentPlayers[2]);
+
 
         do{//outer loop controlling gameplay
             host.randomizeNum();//changes the numToGuess if takeTurn is true
-
             do {//continues to loop until turn.takeTurn is true
-                turn.takeTurn(player, host);
-
+                for(i = 0; i < currentPlayers.length; i++) {
+                    turn.takeTurn(currentPlayers[i], host);
+                }
             } while (false);
             System.out.println("Enter 1 to continue playing or 2 to quit");
             userIn = scnr.nextInt();
