@@ -22,6 +22,6 @@ public class Player extends Person {
 
     @Override
     public String toString(){//overridden string to print name and money
-        return super.toString() + "\n" + "current money: $ " + money;
+        return super.toString() + ": $" + money;
     }
 }

@@ -23,8 +23,7 @@ public class Numbers {
     public boolean compareNumber(int guess){
         if(guess == randomNum){
             return true;
-        }else{
-            return false;
         }
+            return false;
     }
 }

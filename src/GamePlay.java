@@ -1,6 +1,8 @@
-import java.lang.reflect.Array;
 import java.util.Scanner;
-import java.util.ArrayList;
+interface Award{
+    abstract int displayWinnings(Player player, Boolean guess);
+
+}
 public class GamePlay {
 
     //Main method
@@ -10,17 +12,13 @@ public class GamePlay {
         Host host = new Host("Jim");
         Player player;
         Turn turn = new Turn();
-        turn.setWinAmount(400);
-        turn.setLoseAmount(300);
         int userIn = 1;
-        int i;
 
        Player[] currentPlayers = new Player[3];
-        for(i = 0; i < currentPlayers.length; i++) {
+
+        for(int i = 0; i < currentPlayers.length; i++) {//prompts 3 players names to store in the array
             System.out.print("Enter first name: ");
             String fName = scnr.nextLine();
-
-            //Reads last name if entered
             System.out.print("Enter last name (Optional):");
             String lName = scnr.nextLine();
 
@@ -32,23 +30,25 @@ public class GamePlay {
             }
         }
 
-        //System.out.println(currentPlayers[0]);
-        //System.out.println(currentPlayers[1]);
-        //System.out.println(currentPlayers[2]);
-
+        boolean continuePlaying = true;
 
         do{//outer loop controlling gameplay
             host.randomizeNum();//changes the numToGuess if takeTurn is true
-            do {//continues to loop until turn.takeTurn is true
-                for(i = 0; i < currentPlayers.length; i++) {
-                    turn.takeTurn(currentPlayers[i], host);
+            boolean result = false;
+            while (!result) {
+                for(int i = 0; i < currentPlayers.length; i++) {
+                    result = turn.takeTurn(currentPlayers[i], host);
+                    if(result){
+                        break;
+                    }
                 }
-            } while (false);
+           }
+
             System.out.println("Enter 1 to continue playing or 2 to quit");
             userIn = scnr.nextInt();
-            turn.continuePlaying(userIn);
-        }while(turn.continuePlaying(userIn) == true);
+            continuePlaying = turn.continuePlaying(userIn);
 
+        }while(continuePlaying);
         scnr.close();
     }
 }
