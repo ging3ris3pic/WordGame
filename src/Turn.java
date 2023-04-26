@@ -13,11 +13,10 @@ public class Turn {
     }
 
     public boolean takeTurn(Player player, Host host) {//method to play the game
-        var num = new Numbers();
         Scanner scnr = new Scanner(System.in);
         int currentMoney = player.getMoney();
         int guess;
-        int numToGuess = num.getRandomNum();
+        String phraseToGuess = num.getRandomNum();
         System.out.println(numToGuess);
         boolean result;
 

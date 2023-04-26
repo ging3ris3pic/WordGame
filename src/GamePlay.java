@@ -8,6 +8,7 @@ public class GamePlay {
     //Main method
     public static void main(String[]args) {
         //Initializes scanner
+        Phrase phrase = new Phrase();
         Scanner scnr = new Scanner(System.in);
         Host host = new Host("Jim");
         Player player;
@@ -33,7 +34,7 @@ public class GamePlay {
         boolean continuePlaying = true;
 
         do{//outer loop controlling gameplay
-            host.randomizeNum();//changes the numToGuess if takeTurn is true
+            host.setPhrase();//changes the numToGuess if takeTurn is true
             boolean result = false;
             while (!result) {
                 for(int i = 0; i < currentPlayers.length; i++) {
