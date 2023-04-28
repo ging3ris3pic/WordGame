@@ -1,4 +1,4 @@
-public class Player extends Person {
+public class Player extends Person{
     private int money;
 
     public Player(String fName){//creates a player object w/ firstname only
@@ -6,8 +6,8 @@ public class Player extends Person {
         money = 1000;
     }
 
-    public Player(String fName , String lName){//creates a player object w/ firstname and lastname
-        super(fName , lName);
+    public Player(String fName, String lName){//creates a player object w/ firstname and lastname
+        super(fName, lName);
         money = 1000;
     }
 

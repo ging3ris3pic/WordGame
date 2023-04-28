@@ -1,17 +1,17 @@
 import java.util.Random;
 
-public class Physical implements Award {
-    private String[] physicalPrize = {"TV", "Camera", "Car", "Gold bar", "Chicken Statue"};
+public class Physical implements Award{
+    private String[] physicalPrize = { "TV", "Camera", "Car", "Gold bar", "Chicken Statue" };
 
     @Override
-    public int displayWinnings(Player player, Boolean guess) {//method to return a physical prize
-        if(guess) {
+    public int displayWinnings(Player player, Boolean guess){//method to return a physical prize
+        if(guess){
             int prize = getRandomPrize();
-            System.out.println(player.getFullName() + " has guessed correctly and won a " + physicalPrize[prize]);
+            System.out.println(player.getFullName() + ", that is correct, you won a " + physicalPrize[prize]);
             return 0;
-        }else {
+        } else {
             int prize = getRandomPrize();
-            System.out.println(player.getFullName() + " has guessed incorrectly and could have won a "
+            System.out.println(player.getFullName() + ", that is correct. You could have won a "
                     + physicalPrize[prize]);
             return 0;
         }

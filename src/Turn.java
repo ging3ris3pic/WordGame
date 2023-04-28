@@ -1,55 +1,59 @@
 import java.util.Random;
 import java.util.Scanner;
+
 import static java.text.MessageFormat.format;
 
-public class Turn {
-    private boolean result;
-    private int userIn = 1;
+public class Turn{
     private Money money = new Money();
     private Physical physical = new Physical();
+    public Phrase phrase = new Phrase();
 
     public boolean continuePlaying(int userIn){//method to determine if the player wants to continue
         return userIn == 1;
     }
 
-    public boolean takeTurn(Player player, Host host) {//method to play the game
+    public void takeTurn(Player player, Host host){//
         Scanner scnr = new Scanner(System.in);
-        int currentMoney = player.getMoney();
-        int guess;
-        String phraseToGuess = num.getRandomNum();
-        System.out.println(numToGuess);
-        boolean result;
+        String guess;
 
-        System.out.println(format("{0}says, {1}, please guess a number between 0-100.",
-                host, player.getFullName()));
-        guess = scnr.nextInt();
+        hostPrompt(player, host);
+        guess = scnr.next();
+        boolean digit = phrase.digitFound(guess);
 
-        if (guess == numToGuess) {//adds win amt to player currency
-            System.out.println("Congratulations, you guessed the number!");
-            result = true;
-        } else{//subtracts lose amt from player currency
-            System.out.print("You guessed too ");
-            result = false;
-
-            if (guess > numToGuess) {//determines if guess was high or low
-                System.out.println("high");
-            } else {
-                System.out.println("low");
+        try{//try {} catch block returns err if guess isnt a letter or is more than 1 letter
+            phrase.findLetters(guess);
+            if(phrase.findLetters(guess) && !digit){
+                typeOfPrize(player, phrase.findLetters(guess));
+            } else if(! phrase.findLetters(guess) && !digit){
+                typeOfPrize(player, phrase.findLetters(guess));
+            }else{
+                System.err.println("Please enter a valid letter.");
             }
+
+        } catch(MultipleLettersException e){
+            System.err.println(e.getMessage());
         }
 
-        Random rand = new Random();
-        int typeOfPrize = rand.nextInt(10);//random number used for the type of prize
+        System.out.println(player);//prints player name and bank
+    }
 
-        if(typeOfPrize > 3){//determines if the player wins a physical or cash prize
-            currentMoney += money.displayWinnings(player,result);
-        }else{
-            currentMoney += physical.displayWinnings(player,result);
+    public void hostPrompt(Player player, Host host){//prints phrase and prompts player for guess
+        System.out.println("The phase to guess is: " + phrase.replaceLetters());
+        System.out.println(format("{0}says, {1}, please guess a letter in the phrase",
+                host, player.getFullName()));
+    }
+
+    public void typeOfPrize(Player player , boolean guess){//determines what prize the player will win
+        int currentMoney = player.getMoney();
+        Random rand = new Random();//
+        int prize = rand.nextInt(10);
+
+        if ( prize > 1 ) {//updates player currency
+            currentMoney += money.displayWinnings(player, guess);
+            player.setMoney(currentMoney);
+        } else {
+            currentMoney += physical.displayWinnings(player, guess);
+            player.setMoney(currentMoney);
         }
-
-        player.setMoney(currentMoney);
-        System.out.println(player);//prints player name and money
-
-        return result;
     }
 }
