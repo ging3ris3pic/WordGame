@@ -6,4 +6,3 @@ public class MultipleLettersException extends Exception{
         return errorMsg;
     }
 }
-//
