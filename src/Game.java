@@ -28,6 +28,29 @@ public class Game{
         }
     }
 
+    public String getWinner(){
+        return turn.getWinner();
+    }
+
+    public String getLoser(){
+        return turn.getLoser();
+    }
+
+    public String addLog(){
+        String resultLog = "";
+        try {
+            if(phrase.findLetters(turn.getGuess())){
+                resultLog = getWinner();
+            }else{
+                resultLog = getLoser();
+            }
+        } catch (MultipleLettersException e) {
+
+        }
+
+        return resultLog;
+    }
+
     public boolean guessedAll(){
         boolean hasGuessedAll = phrase.hasGuessedAll();
         return hasGuessedAll;
@@ -70,4 +93,3 @@ public class Game{
         return addPlayer(firstName, "");
     }
 }
-
