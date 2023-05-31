@@ -42,7 +42,7 @@ public class GUI{
         addHost();
         startTurn();
         about();
-
+        frame.revalidate();
     }
 
     public void addPanels(){
@@ -144,6 +144,7 @@ public class GUI{
             updatePlayerList();
             updatePlayingPhrase();
             updateLog();
+            frame.revalidate();
         });
     }
 
@@ -161,6 +162,7 @@ public class GUI{
             else{
                 JOptionPane.showMessageDialog(null, "Thank you for playing!");
             }
+            frame.revalidate();
         }
     }
 
@@ -180,6 +182,7 @@ public class GUI{
             String lastName = lastNames[0];
             game.addPlayer(firstName, lastName);
             updatePlayerList();
+            frame.revalidate();
         });
     }
 
@@ -195,6 +198,7 @@ public class GUI{
             game.addHost(hostName);
             promptHostPhrase();
             updateHost();
+            frame.revalidate();
         });
     }
 
@@ -207,5 +211,6 @@ public class GUI{
     public void updatePlayingPhrase(){
         playingPhrase.setText("Phrase to guess: " + game.getHostPhrase());
         currentPlayingPhrase.add(playingPhrase);
+        frame.revalidate();
     }
 }
