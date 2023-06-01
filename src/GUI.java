@@ -16,6 +16,7 @@ public class GUI{
     JMenuItem newPlayer = new JMenuItem("Add player");
     JMenuItem newHost = new JMenuItem("Add host");
     JMenuItem aboutLayout = new JMenuItem("Layout");
+    JMenuItem attributionMenu = new JMenuItem("Attribution");
     JButton startTurnButton = new JButton("Start turn");
     JCheckBox saveLog = new JCheckBox("Save logs");
     JMenuBar mainMenu = new JMenuBar();
@@ -42,7 +43,23 @@ public class GUI{
         addHost();
         startTurn();
         about();
+        attributionMenu();
         frame.revalidate();
+    }
+
+    public void attributionMenu(){
+        attributionMenu.addActionListener(e -> {
+            ArrayList<String> attributes = new ArrayList<>();
+            String tv = "Tv image: https://cdn.pixabay.com/photo/2014/11/01/18/15/decorative-items-512654_1280.jpg";
+            String camera = "\nCamera image: https://cdn.pixabay.com/photo/2012/04/13/17/00/camera-32871_1280.png";
+            String car = "\nCar image: https://cdn.pixabay.com/photo/2017/03/20/04/57/truck-2158284_1280.png";
+            String goldBar = "\nGold bar image: https://cdn.pixabay.com/photo/2013/07/12/12/55/gold-bar-146539_1280.png";
+            String chickenStatue = "\nChicken statue image: https://cdn.pixabay.com/photo/2014/11/01/18/15" +
+                    "/decorative-items-512654_1280.jpg";
+            attributes.add(tv + camera + car + goldBar + chickenStatue);
+            JOptionPane.showMessageDialog(null, attributes);
+        });
+        aboutMenu.add(attributionMenu);
     }
 
     public void addPanels(){
