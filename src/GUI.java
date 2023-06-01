@@ -56,7 +56,9 @@ public class GUI{
             String goldBar = "\nGold bar image: https://cdn.pixabay.com/photo/2013/07/12/12/55/gold-bar-146539_1280.png";
             String chickenStatue = "\nChicken statue image: https://cdn.pixabay.com/photo/2014/11/01/18/15" +
                     "/decorative-items-512654_1280.jpg";
-            attributes.add(tv + camera + car + goldBar + chickenStatue);
+            String correctSound = "\nCorrect sound: https://freesound.org/people/StavSounds/sounds/546084/";
+            String incorrectSound = "\nIncorrect sound: https://freesound.org/people/Beetlemuse/sounds/528956/";
+            attributes.add(tv + camera + car + goldBar + chickenStatue + correctSound + incorrectSound);
             JOptionPane.showMessageDialog(null, attributes);
         });
         aboutMenu.add(attributionMenu);

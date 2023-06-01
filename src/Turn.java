@@ -12,12 +12,14 @@ public class Turn{
     public void takeTurn(Player player, Host host){//
         boolean digit = phrase.digitFound(guess);
 
-        try{//try {} catch block returns err if guess isnt a letter or is more than 1 letter
+        try{//try {} catch block returns err if guess isn't a letter or is more than 1 letter
             phrase.findLetters(guess);
 
             if(phrase.findLetters(guess) && !digit){
+                SoundHandler.playCorrect("Sound/546084__stavsounds__correct.wav");
                 typeOfPrize(player, phrase.findLetters(guess));
             } else if(! phrase.findLetters(guess) && !digit){
+                SoundHandler.playIncorrect("Sound/528956__beetlemuse__wrong-answer-incorrect-error.wav");
                 typeOfPrize(player, phrase.findLetters(guess));
             }else{
                 System.err.println("Please enter a valid letter.");
