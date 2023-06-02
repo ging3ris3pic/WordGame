@@ -116,6 +116,7 @@ public class GUI{
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
+        frame.setLocationRelativeTo(null);
     }
 
     public void about(){

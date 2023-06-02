@@ -7,7 +7,6 @@ public class Turn{
     private String guess;
     private String winner;
     private String loser;
-    //public GUI gui;
 
     public void takeTurn(Player player, Host host){//
         boolean digit = phrase.digitFound(guess);
