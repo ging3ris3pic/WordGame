@@ -15,10 +15,10 @@ public class Turn{
             phrase.findLetters(guess);
 
             if(phrase.findLetters(guess) && !digit){
-                SoundHandler.playCorrect("Sound/546084__stavsounds__correct.wav");
+                SoundHandler.playCorrect("src/Sound/546084__stavsounds__correct.wav");
                 typeOfPrize(player, phrase.findLetters(guess));
             } else if(! phrase.findLetters(guess) && !digit){
-                SoundHandler.playIncorrect("Sound/528956__beetlemuse__wrong-answer-incorrect-error.wav");
+                SoundHandler.playIncorrect("src/Sound/528956__beetlemuse__wrong-answer-incorrect-error.wav");
                 typeOfPrize(player, phrase.findLetters(guess));
             }else{
                 System.err.println("Please enter a valid letter.");

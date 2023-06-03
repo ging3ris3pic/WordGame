@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class GUI{
     private Game game;
+    AnimatedPanel begin;
     DefaultListModel listModel = new DefaultListModel();
     JList log = new JList(listModel);
     JScrollPane logPane = new JScrollPane();
@@ -22,14 +23,15 @@ public class GUI{
     JMenuBar mainMenu = new JMenuBar();
     JMenu gameMenu = new JMenu("Game");
     JMenu aboutMenu = new JMenu("About");
-    JLabel player = new JLabel();
+    JTextArea player = new JTextArea();
     JLabel host = new JLabel();
     JLabel playingPhrase = new JLabel();
-    final int WIDTH = 500;
-    final int HEIGHT = 300;
+    final int WIDTH = 900;
+    final int HEIGHT = 500;
     private int count = 3;
 
     public GUI(){
+        begin = new AnimatedPanel();
         game = new Game();
         frameSettings();
         addPanels();
@@ -44,6 +46,7 @@ public class GUI{
         startTurn();
         about();
         attributionMenu();
+        beginPanelSettings();
         frame.revalidate();
     }
 
@@ -58,7 +61,8 @@ public class GUI{
                     "/decorative-items-512654_1280.jpg";
             String correctSound = "\nCorrect sound: https://freesound.org/people/StavSounds/sounds/546084/";
             String incorrectSound = "\nIncorrect sound: https://freesound.org/people/Beetlemuse/sounds/528956/";
-            attributes.add(tv + camera + car + goldBar + chickenStatue + correctSound + incorrectSound);
+            String smiley = "\nAnimated image: https://pixabay.com/vectors/smiley-happy-face-smile-lucky-559124/";
+            attributes.add(tv + camera + car + goldBar + chickenStatue + correctSound + incorrectSound + smiley);
             JOptionPane.showMessageDialog(null, attributes);
         });
         aboutMenu.add(attributionMenu);
@@ -66,13 +70,20 @@ public class GUI{
 
     public void addPanels(){
         frame.add(nPanel, BorderLayout.NORTH);
-        logPanel.setPreferredSize(new Dimension(400,100));
         frame.add(logPanel,BorderLayout.SOUTH);
+        logPanel.setPreferredSize(new Dimension(400,100));
         logPanel.add(logPane);
         log.setLayoutOrientation(JList.VERTICAL);
         frame.add(currentPlayers,BorderLayout.EAST);
+        currentPlayers.setPreferredSize(new Dimension(200,400));
         frame.add(currentHost,BorderLayout.WEST);
-        frame.add(currentPlayingPhrase,BorderLayout.CENTER);
+        currentHost.setPreferredSize(new Dimension(150, 400));
+        frame.add(begin, BorderLayout.CENTER);
+    }
+
+    public void beginPanelSettings(){
+        begin.add(currentPlayingPhrase);
+        begin.setSize(200,200);
     }
 
     public void logPaneSettings(){
@@ -208,7 +219,11 @@ public class GUI{
 
     public void updatePlayerList(){
         ArrayList<Player> players = game.getPlayers();
-        player.setText("Current players: " + players);
+        player.setText("Current players: " + "\n");
+        for(int i = 0; i < players.size(); i++){
+            player.append("\n" + players.get(i));
+        }
+        player.setEditable(false);
         currentPlayers.add(player);
     }
 
